@@ -51,20 +51,20 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
         });
 
-        // 주별 화면 연결 -> 일정 리스트로 수정 부탁.
-        imageButton = findViewById(R.id.weekbutton);
+        // 주별 화면 연결 -> 체크리스트로 변경
+        imageButton = findViewById(R.id.checklistbutton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent2 = new Intent(getApplicationContext(), list_schedule.class);
+                Intent intent2 = new Intent(getApplicationContext(), checklist.class);
 
                 startActivity(intent2);
             }
         });
 
 
-        // 일별 화면 연결 -> 체크리스트로 수정 부탁.
+        // 일별 화면 연결
         imageButton = findViewById(R.id.todaybutton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
