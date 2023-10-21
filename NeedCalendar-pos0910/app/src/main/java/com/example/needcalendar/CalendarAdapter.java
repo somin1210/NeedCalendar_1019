@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -46,6 +47,18 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
         else
         {
             holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
+
+            // 날짜 토요일, 일요일 색상 변경 커스텀.
+            DayOfWeek dayOfWeek = date.getDayOfWeek();
+            if (dayOfWeek == DayOfWeek.SATURDAY) {
+                holder.dayOfMonth.setTextColor(Color.parseColor("#00A5FF")); // 토요일은 파란색
+            } else if (dayOfWeek == DayOfWeek.SUNDAY) {
+                holder.dayOfMonth.setTextColor(Color.parseColor("#DC6093")); // 일요일은 빨간색
+            } else {
+                holder.dayOfMonth.setTextColor(Color.BLACK); // 그 외의 날짜는 검정색
+            }
+
+
             if(date.equals(CalendarUtils.selectedDate))
                 holder.parentView.setBackgroundColor(Color.LTGRAY);
         }

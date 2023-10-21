@@ -33,10 +33,6 @@
         <activity
             android:name="com.example.needcalendar.Screen"/>
         <activity
-            android:name="com.example.needcalendar.WeekViewActivity"/>
-        <activity
-            android:name=".EventEditActivity"/>
-        <activity
             android:name="com.example.needcalendar.TodayCalendar"/>
         <activity
             android:name="com.example.needcalendar.RegisterActivity"/>

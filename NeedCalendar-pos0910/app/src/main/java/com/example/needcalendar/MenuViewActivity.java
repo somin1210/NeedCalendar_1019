@@ -23,7 +23,6 @@ public class MenuViewActivity extends AppCompatActivity {
         setContentView(R.layout.menu);
 
         loginButton = findViewById(R.id.login);
-        updateLoginButtonState();
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +60,7 @@ public class MenuViewActivity extends AppCompatActivity {
 
         // 로그아웃 성공 시 로그인 상태를 변경하고 버튼 텍스트를 업데이트합니다.
         isLoggedIn = false;
-        updateLoginButtonState();
+
     }
 
     @Override
@@ -70,18 +69,10 @@ public class MenuViewActivity extends AppCompatActivity {
         if (requestCode == LOGIN_REQUEST_CODE && resultCode == RESULT_OK) {
             // 로그인 화면에서 로그인이 성공적으로 이루어졌을 경우
             isLoggedIn = true;
-            updateLoginButtonState();
+
         }
     }
 
-    // 버튼 텍스트를 업데이트하는 메서드
-    private void updateLoginButtonState() {
-        if (isLoggedIn) {
-            loginButton.setText("로그아웃");
-        } else {
-            loginButton.setText("로그인");
-        }
-    }
 }
 
 

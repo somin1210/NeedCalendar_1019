@@ -15,7 +15,7 @@ public class login extends AppCompatActivity {
     private Button loginButton, registerButton, logoutButton;
     private DBHelper dbHelper;
     private long userId; // 로그인 사용자의 ID를 저장할 변수
-    private String sessionToken; // 세션 토큰을 저장할 변수
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,28 +40,6 @@ public class login extends AppCompatActivity {
                 boolean isValidUser = dbHelper.checkUser(email, password);
 
                 if (isValidUser) {
-
-                    Cursor userCursor = dbHelper.getUserByEmail(email);
-                    if (userCursor.moveToFirst()) {
-                        int userIdIndex = userCursor.getColumnIndex(DBHelper.getColumnUserId());
-                        if (userIdIndex != -1) {
-                            userId = userCursor.getLong(userIdIndex);
-                            // 세션 토큰 생성 또는 가져오기 (여기에서는 임의의 문자열로 대체)
-                            sessionToken = generateSessionToken();
-
-                            boolean isSessionAdded = dbHelper.addSession(userId, sessionToken);
-                            if (isSessionAdded) {
-                                // 세션 정보 저장 성공 메시지 표시
-                                Toast.makeText(login.this, "세션이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                // 세션 정보 저장 실패 메시지 표시
-                                Toast.makeText(login.this, "세션 정보 저장 실패.", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            // 컬럼이 존재하지 않는 경우 처리
-                        }
-                    }
-
                     // 메인 액티비티로 이동하거나 작업을 수행합니다.
                     Intent intent = new Intent(login.this, MainActivity.class);
                     startActivity(intent);
@@ -104,11 +82,6 @@ public class login extends AppCompatActivity {
         Intent intent3 = new Intent(login.this, MenuViewActivity.class);
         startActivity(intent3);
         finish(); // 현재 액티비티를 종료하여 뒤로 가기 버튼으로 돌아갈 수 없게 합니다.
-    }
-
-    private String generateSessionToken() {
-        // 여기에서 세션 토큰을 생성하거나 가져오는 코드를 작성
-        return "임의의_세션_토큰";
     }
 
 }
