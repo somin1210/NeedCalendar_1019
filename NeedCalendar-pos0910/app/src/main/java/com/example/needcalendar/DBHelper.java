@@ -120,3 +120,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 }
+//    private static final String TABLE_TIMER = "timers";
+//    private static final String COLUMN_RECORD = "recordView";
+//    private static final String COLUMN_MENO = "memo_txt";

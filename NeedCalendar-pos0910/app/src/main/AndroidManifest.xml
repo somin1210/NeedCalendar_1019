@@ -40,6 +40,9 @@
             android:name="com.example.needcalendar.list_schedule"/>
         <activity
             android:name="com.example.needcalendar.timer"/>
+        <activity
+            android:name="com.example.needcalendar.record_check"
+            tools:ignore="Instantiatable" />
     </application>
 
 </manifest>

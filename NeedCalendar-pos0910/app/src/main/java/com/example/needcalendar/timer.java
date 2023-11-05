@@ -2,6 +2,7 @@ package com.example.needcalendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.annotation.SuppressLint;
@@ -12,8 +13,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
+
 public class timer extends AppCompatActivity {
     private Button mStartBtn, mStopBtn, mRecordBtn, mPauseBtn;
     private TextView mTimeTextView, mRecordTextView;
@@ -80,6 +84,36 @@ public class timer extends AppCompatActivity {
                 }
             }
         });
+
+        DBhelper_timer dbHelper = new DBhelper_timer(this);
+        Button saveButton = (Button) findViewById(R.id.ok2);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String recordText = mRecordTextView.getText().toString(); // recordView의 내용 가져오기
+                String memoText = ((EditText) findViewById(R.id.memo_txt)).getText().toString(); // memo_txt의 내용 가져오기
+
+                // DB에 데이터 저장
+                boolean isInserted = dbHelper.insertData(recordText, memoText);
+
+                if (isInserted) {
+                    Toast.makeText(timer.this, "데이터가 성공적으로 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(timer.this, "데이터 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        Button recordCheckButton = (Button) findViewById(R.id.record_check);
+        recordCheckButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // RecordCheckActivity로 전환하는 Intent 생성
+                Intent recordCheckIntent = new Intent(timer.this, record_check.class);
+                startActivity(recordCheckIntent);
+            }
+        });
+
     }
 
     @SuppressLint("HandlerLeak")
